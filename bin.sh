@@ -1568,7 +1568,7 @@ getConfigFileInfo() {
             xtls="true"
             flow=`grep flow $CONFIG_FILE | cut -d: -f2 | tr -d \",' '`
         else
-            flow="无"
+            flow="none"
         be
     be
 }
@@ -1646,9 +1646,9 @@ outputVmessTLS() {
     link=`echo -n ${raw} | base64 -w 0`
     link="vmess://${link}"
     echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
-    echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
+    echo -e "   ${BLUE}port(port)：${PLAIN}${RED}${port}${PLAIN}"
     echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
-    echo -e "   ${BLUE}额外id(alterid)：${PLAIN} ${RED}${alterid}${PLAIN}"
+    echo -e "   ${BLUE}additional id(alterid)：${PLAIN} ${RED}${alterid}${PLAIN}"
     echo -e "${BLUE} encryption method (security): ${PLAIN} ${RED}none${PLAIN}"
     echo -e "${BLUE} transport protocol (network): ${PLAIN} ${RED}${network}${PLAIN}"
     echo -e "${BLUE} disguised domain name/hostname (host)/SNI/peer name: ${PLAIN}${RED}${domain}${PLAIN}"
@@ -1675,17 +1675,17 @@ outputVmessWS() {
     link="vmess://${link}"
 
     echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
-    echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
+    echo -e "   ${BLUE}port(port)：${PLAIN}${RED}${port}${PLAIN}"
     echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
-    echo -e "   ${BLUE}额外id(alterid)：${PLAIN} ${RED}${alterid}${PLAIN}"
+    echo -e "   ${BLUE}additional id(alterid)：${PLAIN} ${RED}${alterid}${PLAIN}"
     echo -e "${BLUE} encryption method (security): ${PLAIN} ${RED}none${PLAIN}"
     echo -e "${BLUE} transport protocol (network): ${PLAIN} ${RED}${network}${PLAIN}"
     echo -e "${BLUE} masquerading type (type): ${PLAIN}${RED}none$PLAIN"
     echo -e "${BLUE} disguised domain name/hostname (host)/SNI/peer name: ${PLAIN}${RED}${domain}${PLAIN}"
-    echo -e "   ${BLUE}路径(path)：${PLAIN}${RED}${wspath}${PLAIN}"
+    echo -e "   ${BLUE}path (path)：${PLAIN}${RED}${wspath}${PLAIN}"
     echo -e "${BLUE} underlying security transport (tls): ${PLAIN}${RED}TLS${PLAIN}"
     echo  
-    echo -e "   ${BLUE}vmess链接:${PLAIN} $RED$link$PLAIN"
+    echo -e "   ${BLUE}vmess Link:${PLAIN} $RED$link$PLAIN"
 }
 
 showInfo() {
@@ -1703,7 +1703,7 @@ showInfo() {
 
     getConfigFileInfo
 
-    echo -e "   ${BLUE}协议: ${PLAIN} ${RED}${protocol}${PLAIN}"
+    echo -e "   ${BLUE}protocol: ${PLAIN} ${RED}${protocol}${PLAIN}"
     if [[ "$trojan" = "true" ]]; then
         outputTrojan
         return 0
@@ -1723,9 +1723,9 @@ showInfo() {
     else
         if [[ "$kcp" = "true" ]]; then
             echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
-            echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
+            echo -e "   ${BLUE}Port (port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
-            echo -e "   ${BLUE}加密(encryption)：${PLAIN} ${RED}none${PLAIN}"
+            echo -e "   ${BLUE}Encryption(encryption)：${PLAIN} ${RED}none${PLAIN}"
             echo -e "${BLUE} transport protocol (network): ${PLAIN} ${RED}${network}${PLAIN}"
             echo -e "${BLUE} masquerading type (type): ${PLAIN} ${RED}${type}${PLAIN}"
             echo -e "   ${BLUE}mkcp seed：${PLAIN} ${RED}${seed}${PLAIN}"
@@ -1733,30 +1733,30 @@ showInfo() {
         be
         if [[ "$xtls" = "true" ]]; then
             echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
-            echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
+            echo -e "   ${BLUE}Port(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
-            echo -e "   ${BLUE}流控(flow)：${PLAIN}$RED$flow${PLAIN}"
-            echo -e "   ${BLUE}加密(encryption)：${PLAIN} ${RED}none${PLAIN}"
+            echo -e "   ${BLUE}Flow Control(flow)：${PLAIN}$RED$flow${PLAIN}"
+            echo -e "   ${BLUE}Encryption(encryption)：${PLAIN} ${RED}none${PLAIN}"
             echo -e "${BLUE} transport protocol (network): ${PLAIN} ${RED}${network}${PLAIN}"
             echo -e "${BLUE} masquerading type (type): ${PLAIN}${RED}none$PLAIN"
             echo -e "${BLUE} disguised domain name/hostname (host)/SNI/peer name: ${PLAIN}${RED}${domain}${PLAIN}"
             echo -e "${BLUE} underlying security transport (tls): ${PLAIN}${RED}XTLS${PLAIN}"
         elif [[ "$ws" = "false" ]]; then
             echo -e "   ${BLUE}IP(address):  ${PLAIN}${RED}${IP}${PLAIN}"
-            echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
+            echo -e "   ${BLUE}Port(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
-            echo -e "   ${BLUE}流控(flow)：${PLAIN}$RED$flow${PLAIN}"
-            echo -e "   ${BLUE}加密(encryption)：${PLAIN} ${RED}none${PLAIN}"
+            echo -e "   ${BLUE}Flow Control(flow)：${PLAIN}$RED$flow${PLAIN}"
+            echo -e "   ${BLUE}Encryption(encryption)：${PLAIN} ${RED}none${PLAIN}"
             echo -e "${BLUE} transport protocol (network): ${PLAIN} ${RED}${network}${PLAIN}"
             echo -e "${BLUE} masquerading type (type): ${PLAIN}${RED}none$PLAIN"
             echo -e "${BLUE} disguised domain name/hostname (host)/SNI/peer name: ${PLAIN}${RED}${domain}${PLAIN}"
             echo -e "${BLUE} underlying security transport (tls): ${PLAIN}${RED}TLS${PLAIN}"
         else
             echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
-            echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
+            echo -e "   ${BLUE}Port(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
-            echo -e "   ${BLUE}流控(flow)：${PLAIN}$RED$flow${PLAIN}"
-            echo -e "   ${BLUE}加密(encryption)：${PLAIN} ${RED}none${PLAIN}"
+            echo -e "   ${BLUE}Flow Control (flow)：${PLAIN}$RED$flow${PLAIN}"
+            echo -e "   ${BLUE}Encryption (encryption)：${PLAIN} ${RED}none${PLAIN}"
             echo -e "${BLUE} transport protocol (network): ${PLAIN} ${RED}${network}${PLAIN}"
             echo -e "${BLUE} masquerading type (type): ${PLAIN}${RED}none$PLAIN"
             echo -e "${BLUE} disguised domain name/hostname (host)/SNI/peer name: ${PLAIN}${RED}${domain}${PLAIN}"
@@ -1788,22 +1788,22 @@ menu() {
     echo "#############################################################"
 
     echo -e " ${GREEN}1.${PLAIN} install V2ray-VMESS"
-    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}"
+    echo -e "  ${GREEN}2.${PLAIN}  Install V2ray-${BLUE}VMESS+mKCP${PLAIN}"
     echo -e " ${GREEN}3.${PLAIN} install V2ray-VMESS+TCP+TLS"
     echo -e " ${GREEN}4.${PLAIN} install V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(recommended)${PLAIN}"
-    echo -e "  ${GREEN}5.${PLAIN}   安装V2ray-${BLUE}VLESS+mKCP${PLAIN}"
+    echo -e "  ${GREEN}5.${PLAIN}   Install V2ray-${BLUE}VLESS+mKCP${PLAIN}"
     echo -e " ${GREEN}6.${PLAIN} install V2ray-VLESS+TCP+TLS"
     echo -e "${GREEN}7.${PLAIN} install V2ray-${BLUE}VLESS+WS+TLS${PLAIN}${RED}(can pass cdn)${PLAIN}"
     echo -e "${GREEN}8.${PLAIN} install V2ray-${BLUE}VLESS+TCP+XTLS${PLAIN}${RED}(recommended)${PLAIN}"
     echo -e "${GREEN}9.${PLAIN} install ${BLUE}trojan${PLAIN}${RED}(recommended)${PLAIN}"
     echo -e "${GREEN}10.${PLAIN} install ${BLUE}trojan+XTLS${PLAIN}${RED}(recommended)${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}11.${PLAIN}  更新V2ray"
-    echo -e "  ${GREEN}12.  ${RED}卸载V2ray${PLAIN}"
+    echo -e "  ${GREEN}11.${PLAIN}  renew V2ray"
+    echo -e "  ${GREEN}12.  ${RED} uninstall V2ray${PLAIN}"
     echo " -------------"
     echo -e " ${GREEN}13.${PLAIN} start V2ray"
     echo -e " ${GREEN}14.${PLAIN} restart V2ray"
-    echo -e "  ${GREEN}15.${PLAIN}  停止V2ray"
+    echo -e "  ${GREEN}15.${PLAIN}  stop V2ray"
     echo " -------------"
     echo -e " ${GREEN}16.${PLAIN} View V2ray configuration"
     echo -e " ${GREEN}17.${PLAIN} View V2ray log"
@@ -1905,6 +1905,6 @@ case "$action" in
         ;;
     *)
         echo "parameter error"
-        echo " 用法: `basename $0` [menu|update|uninstall|start|restart|stop|showInfo|showLog]"
+        echo " usage: `basename $0` [menu|update|uninstall|start|restart|stop|showInfo|showLog]"
         ;;
 esac
